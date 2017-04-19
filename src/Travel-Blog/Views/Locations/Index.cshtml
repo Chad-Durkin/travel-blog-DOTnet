@@ -1,9 +1,10 @@
-﻿@{ 
+﻿@model IEnumerable<Travel_Blog.Model.Location>
+
+@{ 
     ViewData["Title"] = "Locations";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model IEnumerable<Travel_Blog.Model.Location>
 
 <h2>Locations</h2>
 @if(Model.Any())
@@ -11,7 +12,7 @@
 <ul>
     @foreach(var listLocation in Model)
     {
-        <li>@Html.DisplayFor(modelLocation => listLocation.Name)</li>
+        <li>@Html.DisplayFor(modelLocation => listLocation.Name) <br /> @Html.ActionLink("Add Post", "Index", "Posts", new { id = listLocation.LocationId }) | @Html.ActionLink("Edit", "Edit", new { id = listLocation.LocationId }) | @Html.ActionLink("Delete", "Delete", new { id = listLocation.LocationId })</li>
     }
 </ul>
 }

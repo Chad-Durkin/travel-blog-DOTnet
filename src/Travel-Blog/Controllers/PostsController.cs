@@ -15,10 +15,29 @@ namespace Travel_Blog.Controllers
 {
     public class PostsController : Controller
     {
+        private TravelBlogDbContext db = new TravelBlogDbContext();
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            var locationTarg = db.Locations.FirstOrDefault(locations => locations.LocationId == id);
+            ViewBag.LocationName = locationTarg.Name;
+            ViewBag.CurrentId = id;
+        
+            var locationsPosts = db.Posts.Where(posts => posts.LocationId == id);
+            return View(locationsPosts);
+        }
+
+        public IActionResult Create(int id)
+        {
+            ViewBag.TypeId = new SelectList(db.Types, "TypeId", "Name");
+            return View(new Post { LocationId = id } );
+        }
+        [HttpPost]
+        public IActionResult Create(Post post)
+        {
+            db.Posts.Add(post);
+            db.SaveChanges();
+            return RedirectToAction("Index/" + post.LocationId);
         }
     }
 }

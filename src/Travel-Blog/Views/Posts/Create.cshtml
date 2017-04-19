@@ -1,0 +1,22 @@
+﻿@model Travel_Blog.Model.Post
+
+@{
+    ViewData["Title"] = "Add Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Post</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.LocationId)
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Content)
+    @Html.TextBoxFor(model => model.Content)
+
+    <p>Type @Html.DropDownList("TypeId")</p>
+
+    <input type="submit" value="Add Post" />
+}

@@ -17,6 +17,7 @@ namespace Travel_Blog.Model
         public DbSet<Post> Posts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<PostTags> PostTags { get; set; }
+        public DbSet<Type> Types { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Travel_Blog.Model.Post>
+
+@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posts for @ViewBag.LocationName</h2>
+
+@foreach(var post in Model)
+{
+    <h2>@Html.DisplayFor(model => post.Name)</h2>
+    <p>@Html.DisplayFor(model => post.Content)</p>
+    <p>@Html.ActionLink("Edit", "Edit", new { id = ViewBag.CurrentId }) | @Html.ActionLink("Delete", "Delete", new { id = ViewBag.CurrentId })</p>
+}
+
+<h3>@Html.ActionLink("Create Post", "Create", new { id = ViewBag.CurrentId })</h3>

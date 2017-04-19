@@ -1,0 +1,17 @@
+﻿@model Travel_Blog.Model.Location
+
+@{
+    ViewData["Title"] = "Delete Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Location</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.LocationId)
+
+    <h2>Are you sure you want to delete @Html.DisplayFor(model => model.Name)?</h2>
+    <input type="submit" value="Delete Location" />
+}
+<p>@Html.ActionLink("Go Back", "Index")</p>

@@ -34,5 +34,32 @@ namespace Travel_Blog.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var thisLocation = db.Locations.FirstOrDefault(locations => locations.LocationId == id);
+            return View(thisLocation);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Location location)
+        {
+            db.Entry(location).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var thisLocation = db.Locations.FirstOrDefault(location => location.LocationId == id);
+            return View(thisLocation);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Location location)
+        {
+            db.Locations.Remove(location);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
