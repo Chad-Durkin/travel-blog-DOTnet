@@ -11,7 +11,7 @@
 {
     <h2>@Html.DisplayFor(model => post.Name)</h2>
     <p>@Html.DisplayFor(model => post.Content)</p>
-    <p>@Html.ActionLink("Edit", "Edit", new { id = ViewBag.CurrentId }) | @Html.ActionLink("Delete", "Delete", new { id = ViewBag.CurrentId })</p>
+    <p>@Html.ActionLink("Edit", "Edit", new { id = post.PostId }) | @Html.ActionLink("Delete", "Delete", new { id = post.PostId })</p>
 }
 
 <h3>@Html.ActionLink("Create Post", "Create", new { id = ViewBag.CurrentId })</h3>
