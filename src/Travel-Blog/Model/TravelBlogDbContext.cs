@@ -14,8 +14,9 @@ namespace Travel_Blog.Model
         }
 
         public DbSet<Location> Locations { get; set; }
-
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostTags> PostTags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -31,6 +32,7 @@ namespace Travel_Blog.Model
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<PostTags>().HasKey(x => new { x.PostId, x.TagId });
         }
     }
 }

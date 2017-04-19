@@ -7,13 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Travel_Blog.Model
 {
-    [Table("Locations")]
-    public class Location
+    [Table("Types")]
+    public class Type
     {
         [Key]
-        public int LocationId { get; set;  }
+        public int TypeId { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-
     }
 }
