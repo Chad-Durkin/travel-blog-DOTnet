@@ -1,0 +1,19 @@
+﻿@{ 
+    ViewData["Title"] = "Locations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<TravelBlog.Model.Location>
+
+<h2>Locations</h2>
+@if(Model.Any())
+{
+<ul>
+    @foreach(var listLocation in Model)
+    {
+        <li>@Html.DisplayFor(modelLocation => listLocation.Name)</li>
+    }
+</ul>
+}
+
+<h3>@Html.ActionLink("Add Location", "Create")</h3>

@@ -14,10 +14,24 @@ namespace Travel_Blog.Controllers
 {
     public class LocationsController : Controller
     {
+        private TravelBlogDbContext db = new TravelBlogDbContext();
         // GET: /<controller>/
         public IActionResult Index()
         {
+            return View(db.Locations.ToList());
+        }
+
+        public IActionResult Create()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Location location)
+        {
+            db.Locations.Add(location);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
