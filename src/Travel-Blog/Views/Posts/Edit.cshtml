@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Travel_Blog.Model.Post
+
 @{
+    ViewData["Title"] = "Edit Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Post</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PostId)
+    @Html.HiddenFor(model => model.LocationId)
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Content)
+    @Html.TextBoxFor(model => model.Content)
+
+    <p>Type @Html.DropDownList("TypeId")</p>
+
+    <input type="submit" value="Save Changes" />
 }

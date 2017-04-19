@@ -22,7 +22,7 @@ namespace Travel_Blog.Controllers
             var locationTarg = db.Locations.FirstOrDefault(locations => locations.LocationId == id);
             ViewBag.LocationName = locationTarg.Name;
             ViewBag.CurrentId = id;
-        
+
             var locationsPosts = db.Posts.Where(posts => posts.LocationId == id);
             return View(locationsPosts);
         }
@@ -30,7 +30,7 @@ namespace Travel_Blog.Controllers
         public IActionResult Create(int id)
         {
             ViewBag.TypeId = new SelectList(db.Types, "TypeId", "Name");
-            return View(new Post { LocationId = id } );
+            return View(new Post { LocationId = id });
         }
         [HttpPost]
         public IActionResult Create(Post post)
@@ -51,6 +51,21 @@ namespace Travel_Blog.Controllers
         {
             //var holderId = post.LocationId;
             db.Posts.Remove(post);
+            db.SaveChanges();
+            return RedirectToAction("Index/" + post.LocationId);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var thisPost = db.Posts.FirstOrDefault(posts => posts.PostId == id);
+            ViewBag.TypeId = new SelectList(db.Types, "TypeId", "Name");
+            return View(thisPost);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Post post)
+        {
+            db.Entry(post).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index/" + post.LocationId);
         }
