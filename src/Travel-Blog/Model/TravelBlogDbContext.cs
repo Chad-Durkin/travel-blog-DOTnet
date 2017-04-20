@@ -54,7 +54,19 @@ namespace Travel_Blog.Model
                     if (tagString[i - 1] != ',' && tagString[i - 1] != ' ')
                     {
                         TagHolder.ToLower();
-                        TagList.Add(new Tag() { Name = TagHolder });
+                        bool isNew = true;
+                        foreach(var tag in TagList)
+                        {
+                            if (TagHolder == tag.Name)
+                            {
+                                isNew = false;
+                                break;
+                            }
+                        }
+                        if (isNew)
+                        {
+                            TagList.Add(new Tag() { Name = TagHolder });
+                        }
                     }
                     TagHolder = "";
                 }

@@ -41,12 +41,26 @@ namespace Travel_Blog.Controllers
         {
             var TagString = this.Request.Form["TagString"];
             db.Posts.Add(post);
+            var OldTags = db.Tags.ToList();
             db.SaveChanges();
             List<Tag> NewTags = db.TagSaver(TagString);
+            foreach(var oldTag in OldTags)
+            {
+                for(int i = 0; i < NewTags.Count; i++)
+                {
+                    if (NewTags[i].Name == oldTag.Name)
+                    {
+                        NewTags[i].TagId = oldTag.TagId;
+                    }
+                }
+            }
             foreach(var tag in NewTags)
             {
-                db.Tags.Add(tag);
-                db.SaveChanges();
+                if (tag.TagId == 0)
+                {
+                    db.Tags.Add(tag);
+                    db.SaveChanges();
+                }
                 var newPostTag = new PostTags() { TagId = tag.TagId, PostId = post.PostId };
                 db.PostTags.Add(newPostTag);
                 db.SaveChanges();
@@ -83,5 +97,6 @@ namespace Travel_Blog.Controllers
             db.SaveChanges();
             return RedirectToAction("Index/" + post.LocationId);
         }
+
     }
 }

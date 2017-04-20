@@ -17,6 +17,7 @@ namespace Travel_Blog.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            ViewBag.SearchString = "";
             return View();
         }
     }

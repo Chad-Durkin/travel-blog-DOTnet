@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Travel_Blog.Model.Post>
+
+@{
+    ViewData["Title"] = "Found Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posts for @ViewBag.SearchTerm</h2>
+
+@foreach (var post in Model)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2>@Html.DisplayFor(model => post.Name)</h2>
+        </div>
+        <div class="panel-body">
+            <p>@Html.DisplayFor(model => post.Content)</p>
+            @foreach (var postTag in post.PostTags)
+            {
+                <div class="well">
+                    <h5>@Html.DisplayFor(model => postTag.Tag.Name)</h5>
+                </div>
+            }
+            <p>@Html.ActionLink("Edit", "Edit", new { id = post.PostId }) | @Html.ActionLink("Delete", "Delete", new { id = post.PostId })</p>
+        </div>
+    </div>
+}
+
+<h3>@Html.ActionLink("Create Post", "Create", new { id = ViewBag.CurrentId })</h3>

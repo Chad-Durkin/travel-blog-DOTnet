@@ -5,3 +5,10 @@
 
 <h1>Welcome to the Homepage</h1>
 <h3>@Html.ActionLink("Locations", "Index", "Locations")</h3>
+
+@using (Html.BeginForm("Index", "Search"))
+{
+    <p>@Html.TextBox("SearchString", null) <input type="submit" value="Search" /></p>
+    
+
+}

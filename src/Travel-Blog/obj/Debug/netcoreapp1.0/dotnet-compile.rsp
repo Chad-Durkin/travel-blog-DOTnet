@@ -201,6 +201,7 @@ C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Startup.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Controllers\HomeController.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Controllers\LocationsController.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Controllers\PostsController.cs
+C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Controllers\SearchController.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Migrations\20170419174704_Initialclear.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Migrations\20170419174704_Initialclear.Designer.cs
 C:\Users\epicodus\Desktop\travelBlog\src\Travel-Blog\Migrations\TravelBlogDbContextModelSnapshot.cs
