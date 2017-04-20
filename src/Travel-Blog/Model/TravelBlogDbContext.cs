@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Travel_Blog.Model;
 
 namespace Travel_Blog.Model
 {
@@ -34,6 +35,32 @@ namespace Travel_Blog.Model
         {
             base.OnModelCreating(builder);
             builder.Entity<PostTags>().HasKey(x => new { x.PostId, x.TagId });
+        }
+
+        public List<Tag> TagSaver(string tagString)
+        {
+            List<string> TagStringList = new List<string>();
+            List<Tag> TagList = new List<Tag>();
+            string TagHolder = "";
+
+            for (var i = 0; i < tagString.Length; i++)
+            {
+                if (tagString[i] != ',' && tagString[i] != ' ')
+                {
+                    TagHolder += tagString[i];
+                }
+                else
+                {
+                    if (tagString[i - 1] != ',' && tagString[i - 1] != ' ')
+                    {
+                        TagHolder.ToLower();
+                        TagList.Add(new Tag() { Name = TagHolder });
+                    }
+                    TagHolder = "";
+                }
+            }
+            TagList.Add(new Tag() { Name = TagHolder });
+            return TagList;
         }
     }
 }

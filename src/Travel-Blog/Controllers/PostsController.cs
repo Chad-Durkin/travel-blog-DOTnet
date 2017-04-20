@@ -40,21 +40,14 @@ namespace Travel_Blog.Controllers
         public IActionResult Create(Post post)
         {
             var TagString = this.Request.Form["TagString"];
-            List<Tag> NewTags = Tag.MakeTags(Post.ParseTags(TagString));
-            List<int> TagIds = new List<int>();
+            db.Posts.Add(post);
+            db.SaveChanges();
+            List<Tag> NewTags = db.TagSaver(TagString);
             foreach(var tag in NewTags)
             {
                 db.Tags.Add(tag);
                 db.SaveChanges();
-                TagIds.Add(tag.TagId);
-            }
-            db.Posts.Add(post);
-            db.SaveChanges();
-            foreach(int tagId in TagIds)
-            {
-                var newPostTag = new PostTags();
-                newPostTag.TagId = tagId;
-                newPostTag.PostId = post.PostId;
+                var newPostTag = new PostTags() { TagId = tag.TagId, PostId = post.PostId };
                 db.PostTags.Add(newPostTag);
                 db.SaveChanges();
             }
