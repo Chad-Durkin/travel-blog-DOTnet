@@ -30,13 +30,31 @@ namespace Travel_Blog.Controllers
         public IActionResult Create(int id)
         {
             ViewBag.TypeId = new SelectList(db.Types, "TypeId", "Name");
+            ViewBag.TagString = "";
             return View(new Post { LocationId = id });
         }
         [HttpPost]
         public IActionResult Create(Post post)
         {
+            var TagString = this.Request.Form["TagString"];
+            List<Tag> NewTags = Tag.MakeTags(Post.ParseTags(TagString));
+            List<int> TagIds = new List<int>();
+            foreach(var tag in NewTags)
+            {
+                db.Tags.Add(tag);
+                db.SaveChanges();
+                TagIds.Add(tag.TagId);
+            }
             db.Posts.Add(post);
             db.SaveChanges();
+            foreach(int tagId in TagIds)
+            {
+                var newPostTag = new PostTags();
+                newPostTag.TagId = tagId;
+                newPostTag.PostId = post.PostId;
+                db.PostTags.Add(newPostTag);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index/" + post.LocationId);
         }
 

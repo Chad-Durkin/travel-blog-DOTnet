@@ -13,6 +13,9 @@
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name)
 
+    <p>Here's the tag textbox</p>
+    @Html.TextBox("TagString", null)
+
     @Html.LabelFor(model => model.Content)
     @Html.TextBoxFor(model => model.Content)
 
