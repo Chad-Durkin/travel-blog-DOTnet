@@ -23,7 +23,10 @@ namespace Travel_Blog.Controllers
             ViewBag.LocationName = locationTarg.Name;
             ViewBag.CurrentId = id;
 
-            var locationsPosts = db.Posts.Where(posts => posts.LocationId == id);
+            var locationsPosts = db.Posts
+                .Include(post => post.PostTags)
+                .ThenInclude(postTags => postTags.Tag)
+                .Where(post => post.LocationId == id);
             return View(locationsPosts);
         }
 

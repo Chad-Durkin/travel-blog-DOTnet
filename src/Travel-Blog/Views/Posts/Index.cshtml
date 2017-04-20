@@ -11,6 +11,10 @@
 {
     <h2>@Html.DisplayFor(model => post.Name)</h2>
     <p>@Html.DisplayFor(model => post.Content)</p>
+    @foreach(var postTag in post.PostTags) 
+    {
+        <h5>@Html.DisplayFor(model => postTag.Tag.Name)</h5>
+    }
     <p>@Html.ActionLink("Edit", "Edit", new { id = post.PostId }) | @Html.ActionLink("Delete", "Delete", new { id = post.PostId })</p>
 }
 

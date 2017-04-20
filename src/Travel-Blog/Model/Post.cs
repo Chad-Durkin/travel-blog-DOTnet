@@ -40,6 +40,7 @@ namespace Travel_Blog.Model
                     TagHolder = "";
                 }
             }
+            TagList.Add(TagHolder);
             return TagList;
         }
     }
