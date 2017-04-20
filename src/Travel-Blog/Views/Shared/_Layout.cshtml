@@ -8,6 +8,16 @@
 </head>
 <body>
     <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-left">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+                <ul class="nav navbar-right">
+                    <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
+                </ul>
+            </div>
+        </nav>
         @RenderBody()
     </div>
 </body>
